@@ -42,7 +42,7 @@ Render a component in a variable.
   
 *example*
 
-```
+```yml
 - title: 'Componente 1'
   content$include:
     component: 'component2.twig'
@@ -57,7 +57,7 @@ Render the item as raw markup.
 
 *example*
 
-```
+```yml
 - img$raw: '<img src="example.png">'
 ```
 
@@ -69,7 +69,7 @@ Generate a drupal attributes like object.
 
 *example*
 
-```
+```yml
 - attributes$attr
     class:
       - 'first-class'
@@ -89,7 +89,7 @@ Add modifier class for `attr` function.
   
 *example*
 
-```
+```yml
 - attributes$modifier$attr:
     modifers:
       - mod_one
