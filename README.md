@@ -91,7 +91,7 @@ Add modifier class for `attr` function.
 
 ```yml
 - attributes$modifier$attr:
-    modifers:
+    modifiers:
       - mod_one
       - mod_two
     class:
