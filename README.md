@@ -94,6 +94,8 @@ Add modifier class for `attr` function.
     modifers:
       - mod_one
       - mod_two
+    class:
+      - other_class
 ```
 
 ## Extends
