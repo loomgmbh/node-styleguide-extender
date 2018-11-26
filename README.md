@@ -26,6 +26,35 @@
       img: 'src2.jpg' 
 ```
 
+# Custom Functions and Extender
+
+*example in gulpfile.js*
+```js
+const StyleguideExtender = require('styleguide-extender');
+
+StyleguideExtender.addFunction('custom_func', function(item, info) {
+  return item;
+});
+
+StyleguideExtender.addExtend(function(vars) {
+  if (vars.attach_library !== undefined) {
+    throw new Error(this.getErrorInfo() + '"attach_library" is a reserved key.');
+  }
+  vars.attach_library = function() { return ''; };
+});
+```
+
+# Change the splitter string
+
+Set the splitter for functions. Default: $
+
+*example in gulpfile.js*
+```js
+const StyleguideExtender = require('styleguide-extender');
+
+StyleguideExtender.setSplitter('==');
+```
+
 # API
 
 ## Functions

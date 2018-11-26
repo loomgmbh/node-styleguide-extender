@@ -7,27 +7,39 @@ module.exports = class StyleguideExtender {
     this._twig = twig;
     this._functions = {};
     this._extends = [];
-
-    this.addFunction('include', require('./functions/include'));
-    this.addFunction('raw', require('./functions/raw'));
-    this.addFunction('modifier', require('./functions/modifier'));
-    this.addFunction('attr', require('./functions/attr'));
-
-    this.addExtend(require('./extends/attach_library'));
   }
 
-  addFunction(name, func) {
+  static addFunction(name, func) {
+    if (this._functions === undefined) this._functions = {};
     this._functions[name] = func;
     return this;
   }
 
-  addExtend(func) {
+  static addExtend(func) {
+    if (this._extends === undefined) this._extends = [];
     this._extends.push(func);
     return this;
   }
 
+  static setSplitter(splitter) {
+    this._splitter = splitter;
+    return this;
+  }
+
+  getSplitter() {
+    return this.constructor._splitter || '$';
+  }
+
+  getFunctions() {
+    return this.constructor._functions;
+  }
+
+  getExtends() {
+    return this.constructor._extends;
+  }
+
   extend(vars) {
-    for (const func of this._extends) {
+    for (const func of this.getExtends()) {
       func.call(this, vars);
     }
     return vars;
@@ -45,7 +57,7 @@ module.exports = class StyleguideExtender {
         vars[key] = this.doApply(vars[key]);
       }
 
-      const [name, ...functions] = key.split('$');
+      const [name, ...functions] = key.split(this.getSplitter());
       let item = vars[key];
 
       for (const func of functions) {
@@ -63,10 +75,12 @@ module.exports = class StyleguideExtender {
   }
 
   doFunction(func, item, info) {
-    if (this._functions[func] === undefined) {
+    const functions = this.getFunctions();
+
+    if (functions[func] === undefined) {
       throw new Error(this.getErrorInfo() + 'Unknown function "' + func + '"');
     }
-    return this._functions[func].call(this, item, info);
+    return functions[func].call(this, item, info);
   }
 
   getTemplate() {
@@ -94,3 +108,10 @@ module.exports = class StyleguideExtender {
   }
 
 }
+
+module.exports.addFunction('include', require('./functions/include'));
+module.exports.addFunction('raw', require('./functions/raw'));
+module.exports.addFunction('modifier', require('./functions/modifier'));
+module.exports.addFunction('attr', require('./functions/attr'));
+
+module.exports.addExtend(require('./extends/attach_library'));
