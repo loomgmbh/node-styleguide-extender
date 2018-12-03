@@ -1,6 +1,6 @@
 # Quick Install
 
-`npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.0.0`
+`npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.0.1`
 
 # Use Package
 
@@ -10,7 +10,7 @@
 - title: 'Test Componente'
   media$include:
     component: 'media.twig'
-    img: 'src.jpg' 
+    img: 'src.jpg'
 ```
 
 *example.yml as array*
@@ -18,12 +18,12 @@
 ```yml
 - title: 'Test Componente'
   items:
-    - $include
-      component: 'media.twig'
-      img: 'src.jpg'
-    - $include
-      component: 'media.twig'
-      img: 'src2.jpg' 
+    - $include:
+        component: 'media.twig'
+        img: 'src.jpg'
+    - $include:
+        component: 'media.twig'
+        img: 'src2.jpg'
 ```
 
 # Custom Functions and Extender
@@ -66,18 +66,18 @@ StyleguideExtender.setSplitter('==');
 Render a component in a variable.
 
 **Parameters:**
-    
+
   - **string** component - the path to the component relative to theme
-  
+
 *example*
 
 ```yml
 - title: 'Componente 1'
   content$include:
     component: 'component2.twig'
-    title: 'Componente 2' 
+    title: 'Componente 2'
 ```
-  
+
 ### raw
 
 **Description:**
@@ -113,9 +113,9 @@ Add modifier class for `attr` function.
 
 **Parameters:**
 
-  - **string[]** modifiers - the modifier classes  
+  - **string[]** modifiers - the modifier classes
   - **string** name (optional) - the name of the element, default the name of the template
-  
+
 *example*
 
 ```yml
