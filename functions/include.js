@@ -13,6 +13,5 @@ module.exports = function include(item, info) {
     data: fs.readFileSync(file, 'utf-8'),
   });
 
-  this.extend(item);
   return raw(template.render(item), info);
 }
