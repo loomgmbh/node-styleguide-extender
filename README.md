@@ -69,12 +69,15 @@ StyleguideExtender.addFunction('custom_func', function(item, info) {
   return item;
 });
 
-StyleguideExtender.addExtend(function(vars) {
-  if (vars.attach_library !== undefined) {
-    throw new Error(this.getErrorInfo() + '"attach_library" is a reserved key.');
-  }
-  vars.attach_library = function() { return ''; };
+StyleguideExtender.addExtender(function(Twig) {
+  Twig.functions.attach_library = function() {
+    return '';
+  };
 });
+
+const twigInclude = require('twig-include');
+
+StyleguideExtender.addExtender(twigInclude.extend);
 ```
 
 # Change the splitter string
