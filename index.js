@@ -113,6 +113,6 @@ module.exports.addFunction('attr', require('./functions/attr'));
 module.exports.addFunction('log', require('./functions/log'));
 module.exports.addFunction('info', require('./functions/info'));
 
-module.exports.addExtender(require('./extends/attach_library'));
-module.exports.addExtender(require('./extends/create_attribute'));
-module.exports.addExtender(require('./extends/modifier'));
+module.exports.addExtender(require('./extenders/attach_library'));
+module.exports.addExtender(require('./extenders/create_attribute'));
+module.exports.addExtender(require('./extenders/modifier'));
