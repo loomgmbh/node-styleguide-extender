@@ -3,10 +3,12 @@ const path = require('path');
 
 module.exports = class StyleguideExtender {
 
+  static get extends() {
+    return this.doExtend.bind(this);
+  }
+
   constructor(twig) {
     this._twig = twig;
-    this._functions = {};
-    this._extends = [];
   }
 
   static addFunction(name, func) {
@@ -15,15 +17,22 @@ module.exports = class StyleguideExtender {
     return this;
   }
 
-  static addExtend(func) {
-    if (this._extends === undefined) this._extends = [];
-    this._extends.push(func);
+  static addExtender(func) {
+    if (this._extenders === undefined) this._extenders = [];
+    this._extenders.push(func);
     return this;
   }
 
   static setSplitter(splitter) {
     this._splitter = splitter;
     return this;
+  }
+
+  static doExtend(Twig) {
+    if (this._extenders === undefined) return;
+    for (const item of this._extenders) {
+      item(Twig);
+    }
   }
 
   getSplitter() {
@@ -34,20 +43,8 @@ module.exports = class StyleguideExtender {
     return this.constructor._functions;
   }
 
-  getExtends() {
-    return this.constructor._extends;
-  }
-
-  extend(vars) {
-    for (const func of this.getExtends()) {
-      func.call(this, vars);
-    }
-    return vars;
-  }
-
   apply(template, vars) {
     this._template = template;
-    this.extend(vars);
     return this.doApply(vars);
   }
 
@@ -113,5 +110,9 @@ module.exports.addFunction('include', require('./functions/include'));
 module.exports.addFunction('raw', require('./functions/raw'));
 module.exports.addFunction('modifier', require('./functions/modifier'));
 module.exports.addFunction('attr', require('./functions/attr'));
+module.exports.addFunction('log', require('./functions/log'));
+module.exports.addFunction('info', require('./functions/info'));
 
-module.exports.addExtend(require('./extends/attach_library'));
+module.exports.addExtender(require('./extends/attach_library'));
+module.exports.addExtender(require('./extends/create_attribute'));
+module.exports.addExtender(require('./extends/modifier'));
