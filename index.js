@@ -116,3 +116,4 @@ module.exports.addFunction('info', require('./functions/info'));
 module.exports.addExtender(require('./extenders/attach_library'));
 module.exports.addExtender(require('./extenders/create_attribute'));
 module.exports.addExtender(require('./extenders/modifier'));
+module.exports.addExtender(require('./extenders/link'));

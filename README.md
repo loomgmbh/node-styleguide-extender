@@ -1,6 +1,6 @@
 # Quick Install
 
-`npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.1.2`
+`npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.2.0`
 
 # Config
 
@@ -254,4 +254,18 @@ Print the info object in the render process.
 
 ```html
 <div class="element element--small element--white"></div>
+```
+
+### link
+
+*source*
+
+```twig
+link('Link title', 'http://www.google.com', {class: 'link-class'})
+```
+
+*result*
+
+```html
+<a href="http://www.google.com" class="link-class">Link title</a>
 ```
