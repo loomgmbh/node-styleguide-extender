@@ -9,6 +9,7 @@ module.exports = class StyleguideExtender {
 
   constructor(twig) {
     this._twig = twig;
+    this._twig.extend(StyleguideExtender.extends);
   }
 
   static addFunction(name, func) {
@@ -115,5 +116,7 @@ module.exports.addFunction('info', require('./functions/info'));
 
 module.exports.addExtender(require('./extenders/attach_library'));
 module.exports.addExtender(require('./extenders/create_attribute'));
-module.exports.addExtender(require('./extenders/modifier'));
 module.exports.addExtender(require('./extenders/link'));
+module.exports.addExtender(require('./extenders/modifier'));
+module.exports.addExtender(require('./extenders/t'));
+module.exports.addExtender(require('./extenders/without'));

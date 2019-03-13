@@ -242,6 +242,20 @@ Print the info object in the render process.
 <div class="element"></div>
 ```
 
+### link
+
+*source*
+
+```twig
+link('Link title', 'http://www.google.com', {class: 'link-class'})
+```
+
+*result*
+
+```html
+<a href="http://www.google.com" class="link-class">Link title</a>
+```
+
 ### modifier
 
 *source*
@@ -256,16 +270,30 @@ Print the info object in the render process.
 <div class="element element--small element--white"></div>
 ```
 
-### link
+### t
 
 *source*
 
 ```twig
-link('Link title', 'http://www.google.com', {class: 'link-class'})
+{{ 'Translatable text'|t }}
 ```
 
 *result*
 
 ```html
-<a href="http://www.google.com" class="link-class">Link title</a>
+Translatable text
+```
+
+### without
+
+*source*
+
+```twig
+{{ attributes|without('class') }}
+```
+
+*result*
+
+```html
+href="#"
 ```
