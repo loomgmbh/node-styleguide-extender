@@ -1,6 +1,6 @@
 # Quick Install
 
-`npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.2.0`
+`npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.3.0`
 
 # Config
 
