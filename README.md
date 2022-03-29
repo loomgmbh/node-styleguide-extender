@@ -1,3 +1,11 @@
+
+---
+**ABANDONED - DO NOT USE**
+
+This project has moved to https://gitlab.loom.de/loom/node-modules/styleguide-extender 
+
+---
+
 # Quick Install
 
 `npm install git+https://github.com/loomgmbh/node-styleguide-extender.git#1.3.2`
